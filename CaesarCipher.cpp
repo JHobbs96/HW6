@@ -19,11 +19,6 @@ string CaesarCipher::decrypt(string s) {
     return encryptDecrypt(s, false);
 }
 
-//CaesarCipher &CaesarCipher::operator=(const CaesarCipher &other) {
-//    this->shift = other.shift;
-//    this->
-//}
-
 string CaesarCipher::encryptDecrypt(string s, bool encrypt) {
     //StringStream to act as a StringBuilder
     stringstream ss;
@@ -63,6 +58,55 @@ int CaesarCipher::getShift() {
 
 bool CaesarCipher::isPositionInRange(int indx) {
     return indx >= OFFSET_MIN && indx <= OFFSET_MAX;
+}
+
+CaesarCipher &CaesarCipher::operator=(const CaesarCipher &other) {
+    if(this != &other) {
+        this->shift = other.shift;
+    }
+    return *this;
+}
+
+CaesarCipher CaesarCipher::operator+(const CaesarCipher &) {
+    return CaesarCipher();
+}
+
+bool CaesarCipher::operator==(const CaesarCipher &other) {
+    if(this == &other){
+        return true;
+    }
+    if(this->shift == other.shift){
+        return true;
+    }
+    return false;
+}
+
+bool CaesarCipher::operator<(const CaesarCipher &other) {
+    if(this == &other){
+        return false;
+    }
+    if(this->shift < other.shift){
+        return true;
+    }
+    return false;
+}
+
+bool CaesarCipher::operator>(const CaesarCipher &other) {
+    if(this == &other){
+        return false;
+    }
+    if(this->shift > other.shift){
+        return true;
+    }
+    return false;
+}
+
+//CaesarCipher &CaesarCipher::operator++() {
+//    return <#initializer#>;
+//}
+
+CaesarCipher CaesarCipher::operator++(int) {
+    return CaesarCipher();
 }
 
 
